@@ -2,7 +2,6 @@ module HomePageRedirector
   module HomePageRedirector
     def self.included(base)
       base.class_eval do
-        # Insert overrides here, for example:
         def index_with_redirector
           unless User.current.anonymous?
             redirect_to my_page_path
@@ -16,3 +15,5 @@ module HomePageRedirector
     end
   end
 end
+
+WelcomeController.send(:include, HomePageRedirector::HomePageRedirector)
